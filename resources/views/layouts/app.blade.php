@@ -22,5 +22,7 @@
 
     <body class="antialiased">
         {{ $slot }}
+
+        @livewire('livewire-ui-spotlight')
     </body>
 </html>
