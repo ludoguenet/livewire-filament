@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Web\Profile;
+namespace App\Http\Controllers\Web\Profile\Experiences;
 
 use App\Models\User;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -16,10 +15,10 @@ class ShowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Authenticatable $user): View
+    public function __invoke(Request $request, Authenticatable $user)
     {
-        return view('profile.show', [
-            'user' => $user->load(['profile']),
+        return view('profile.experiences.show', [
+            'user' => $user->load(['profile.experiences']),
         ]);
     }
 }
