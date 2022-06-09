@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Profile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DashboardController extends Controller
+class ShowController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,8 +16,6 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request): View
     {
-        return view('dashboard', [
-            'user' => auth()->user(),
-        ]);
+        return view('profile.show');
     }
 }
