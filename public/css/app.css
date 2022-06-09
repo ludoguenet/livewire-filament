@@ -3851,6 +3851,10 @@ select{
 .bg-white\/20{
   background-color: rgb(255 255 255 / 0.2);
 }
+.bg-gray-900{
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
 .bg-cover{
   background-size: cover;
 }
@@ -4705,6 +4709,9 @@ select{
 .focus\:ring-offset-gray-700:focus{
   --tw-ring-offset-color: #374151;
 }
+.focus\:ring-offset-gray-800:focus{
+  --tw-ring-offset-color: #1f2937;
+}
 .active\:bg-gray-900:active{
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -5206,6 +5213,17 @@ select{
 }
 @media (min-width: 640px){
 
+  .sm\:static{
+    position: static;
+  }
+
+  .sm\:inset-auto{
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+  }
+
   .sm\:col-span-1{
     grid-column: span 1 / span 1;
   }
@@ -5367,6 +5385,10 @@ select{
     align-items: center;
   }
 
+  .sm\:items-stretch{
+    align-items: stretch;
+  }
+
   .sm\:justify-start{
     justify-content: flex-start;
   }
@@ -5430,6 +5452,10 @@ select{
 
   .sm\:pt-2{
     padding-top: 0.5rem;
+  }
+
+  .sm\:pr-0{
+    padding-right: 0px;
   }
 
   .sm\:text-left{
@@ -5704,6 +5730,10 @@ select{
 
   .lg\:mr-4{
     margin-right: 1rem;
+  }
+
+  .lg\:block{
+    display: block;
   }
 
   .lg\:flex{

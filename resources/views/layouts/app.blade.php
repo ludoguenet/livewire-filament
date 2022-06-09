@@ -21,6 +21,9 @@
     </head>
 
     <body class="antialiased">
+
+        @include('layouts.navigation')
+
         {{ $slot }}
 
         @livewire('livewire-ui-spotlight')
