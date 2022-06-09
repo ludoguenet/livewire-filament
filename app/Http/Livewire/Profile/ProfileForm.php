@@ -15,7 +15,7 @@ class ProfileForm extends Component implements HasForms
     use InteractsWithForms;
 
     public string $uuid;
-    public ?string $bio;
+    public null|string $bio = null;
 
     public function mount(User $user): void
     {
@@ -33,6 +33,10 @@ class ProfileForm extends Component implements HasForms
     public function submit(): void
     {
         $this->validate();
+
+        Profile::query()
+            ->where('uuid', $this->uuid)
+            ->update(['bio' => $this->bio]);
     }
 
     protected function rules(): array
