@@ -2,40 +2,45 @@
 
 namespace App\Http\Livewire\Profile;
 
-use App\Models\User;
 use Livewire\Component;
-use Filament\Forms\Components\Select;
+use Illuminate\Support\Collection;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\HasManyRepeater;
+use Filament\Forms\Components\Repeater;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Filament\Forms\Concerns\InteractsWithForms;
 
 class ExperienceForm extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public function mount(User $user): void
+    public Authenticatable $user;
+
+    public $experiences;
+
+    public function mount(Authenticatable $user): void
     {
-        $this->uuid = $user->profile->uuid;
-        $this->experiences = $user->profile->experiences;
+        $this->form->fill([
+            'experiences' => $user->profile->experiences->toArray()
+        ]);
     }
 
     protected function getFormSchema(): array
     {
         return [
-            Repeater::make('members')
-            ->schema([
-                TextInput::make('name')->required(),
-                Select::make('role')
-                    ->options([
-                        'member' => 'Member',
-                        'administrator' => 'Administrator',
-                        'owner' => 'Owner',
-                    ])
-                    ->required(),
-            ])
-            ->columns(2)
+            Repeater::make('experiences')
+                ->schema([
+                    TextInput::make('description')->required(),
+                    // Select::make('role')
+                    //     ->options([
+                    //         'member' => 'Member',
+                    //         'administrator' => 'Administrator',
+                    //         'owner' => 'Owner',
+                    //     ])
+                    //     ->required(),
+                ])
+                // ->columns(2)
         ];
     }
 
