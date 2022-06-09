@@ -6,7 +6,9 @@
     </x-slot>
 
     <div class="py-12 max-w-7xl mx-auto">
-        <livewire:profile.profile-form />
+        <livewire:profile.profile-form
+            :user="$user"
+        />
     </div>
 
 </x-app-layout>
