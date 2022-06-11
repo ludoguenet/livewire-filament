@@ -26,7 +26,7 @@ class ExperienceFactory extends Factory
             'job_title_id' => JobTitle::factory(),
             'company_id' => Company::factory(),
             'started_at' => $startDate = now()->subMonths($this->faker->numberBetween(1, 16)),
-            'finished_at' => $current ? $startDate->addMonths($this->faker->numberBetween(1, 6)) : null,
+            'finished_at' => $current ? null : $startDate->addMonths($this->faker->numberBetween(1, 6)),
         ];
     }
 }

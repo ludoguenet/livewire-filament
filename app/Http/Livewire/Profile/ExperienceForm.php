@@ -2,12 +2,17 @@
 
 namespace App\Http\Livewire\Profile;
 
+use App\Models\User;
+use App\Models\Profile;
 use Livewire\Component;
 use Illuminate\Support\Collection;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\HasManyRepeater;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\BelongsToSelect;
+use Filament\Forms\Components\HasManyRepeater;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Filament\Forms\Concerns\InteractsWithForms;
 
@@ -15,32 +20,43 @@ class ExperienceForm extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public Authenticatable $user;
+    public Profile $profile;
 
-    public $experiences;
+    public null|array $experiences;
 
-    public function mount(Authenticatable $user): void
+    public function mount(Profile $profile): void
     {
         $this->form->fill([
-            'experiences' => $user->profile->experiences->toArray()
+            'experiences' => $profile->experiences?->toArray()
         ]);
+    }
+
+    protected function getFormModel(): Profile
+    {
+        return $this->profile;
     }
 
     protected function getFormSchema(): array
     {
         return [
-            Repeater::make('experiences')
+            HasManyRepeater::make('experiences')
                 ->schema([
+                    BelongsToSelect::make('job_title_id')
+                        ->relationship('jobTitle', 'name')
+                        ->searchable('name')
+                        ->preload()
+                        ->required(),
+                    BelongsToSelect::make('company_id')
+                        ->relationship('company', 'name')
+                        ->searchable('name')
+                        ->preload()
+                        ->required(),
                     TextInput::make('description')->required(),
-                    // Select::make('role')
-                    //     ->options([
-                    //         'member' => 'Member',
-                    //         'administrator' => 'Administrator',
-                    //         'owner' => 'Owner',
-                    //     ])
-                    //     ->required(),
+                    Checkbox::make('current')->inline(),
+                    DatePicker::make('started_at')
+                        ->required(),
+                    DatePicker::make('finished_at'),
                 ])
-                // ->columns(2)
         ];
     }
 
