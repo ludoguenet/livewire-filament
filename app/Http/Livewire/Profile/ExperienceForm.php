@@ -51,11 +51,13 @@ class ExperienceForm extends Component implements HasForms
                         ->searchable('name')
                         ->preload()
                         ->required(),
-                    TextInput::make('description')->required(),
-                    Checkbox::make('current')->inline(),
+                    TextInput::make('description'),
+                    Checkbox::make('current')
+                        ->reactive()
+                        ->nullable(),
                     DatePicker::make('started_at')
                         ->required(),
-                    DatePicker::make('finished_at'),
+                    DatePicker::make('finished_at')->hidden(fn ($get) => $get('current')),
                 ])
         ];
     }
