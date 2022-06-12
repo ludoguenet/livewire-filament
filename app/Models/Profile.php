@@ -34,4 +34,12 @@ class Profile extends Model
             foreignKey: 'profile_id',
         );
     }
+
+    public function links(): HasMany
+    {
+        return $this->hasMany(
+            related: Link::class,
+            foreignKey: 'profile_id'
+        );
+    }
 }
