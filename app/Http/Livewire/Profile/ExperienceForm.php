@@ -62,6 +62,13 @@ class ExperienceForm extends Component implements HasForms
         ];
     }
 
+    public function submit(): void
+    {
+        $this->profile->update(
+            $this->form->getState(),
+        );
+    }
+
     public function render()
     {
         return <<<'blade'
