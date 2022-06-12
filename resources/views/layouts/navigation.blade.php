@@ -56,8 +56,8 @@
               </a>
 
               <a
-                href="{{ route('experiences.show') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('experiences.show') ? 'bg-gray-900' : '' }}"
+                href="{{ route('profile.experiences.show') }}"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('profile.experiences.show') ? 'bg-gray-900' : '' }}"
               >
                 Experiences
               </a>
@@ -136,7 +136,7 @@
 
         <a href="{{ route('profile.show') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Profile</a>
 
-        <a href="{{ route('experiences.show') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experiences</a>
+        <a href="{{ route('profile.experiences.show') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experiences</a>
 
         <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
       </div>

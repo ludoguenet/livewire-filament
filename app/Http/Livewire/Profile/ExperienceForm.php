@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Profile;
 
+use Closure;
 use App\Models\User;
 use App\Models\Profile;
 use Livewire\Component;
@@ -53,11 +54,15 @@ class ExperienceForm extends Component implements HasForms
                         ->required(),
                     TextInput::make('description'),
                     Checkbox::make('current')
+                        ->afterStateUpdated(function (Closure $set, $state) {
+                            $set('finished_at', null);
+                        })
                         ->reactive()
                         ->nullable(),
                     DatePicker::make('started_at')
                         ->required(),
-                    DatePicker::make('finished_at')->hidden(fn ($get) => $get('current')),
+                    DatePicker::make('finished_at')
+                        ->hidden(fn ($get) => $get('current')),
                 ])
         ];
     }

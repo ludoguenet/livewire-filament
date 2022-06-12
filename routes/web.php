@@ -28,10 +28,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('profile')->as('profile.')->group(function () {
         Route::get('/', ShowController::class)->name('show');
-    });
 
-    Route::prefix('experiences')->as('experiences.')->group(function () {
-        Route::get('/', ExperienceShowController::class)->name('show');
+        Route::prefix('experiences')->as('experiences.')->group(function () {
+            Route::get('/', ExperienceShowController::class)->name('show');
+        });
+
     });
 });
 
