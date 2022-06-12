@@ -21,6 +21,7 @@ class Experience extends Model
         'profile_id',
         'job_title_id',
         'company_id',
+        'sort',
     ];
 
     protected $casts = [
