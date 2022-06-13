@@ -62,7 +62,9 @@ class ExperienceForm extends Component implements HasForms
                     DatePicker::make('started_at')
                         ->required(),
                     DatePicker::make('finished_at')
-                        ->hidden(fn ($get) => $get('current')),
+                        ->hidden(fn ($get) => $get('current'))
+                        ->nullable()
+                        ->withoutTime(),
                 ])
                 ->orderable()
         ];
