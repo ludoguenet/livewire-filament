@@ -17,10 +17,10 @@ class ProfileForm extends Component implements HasForms
     public string $uuid;
     public null|string $bio = null;
 
-    public function mount(User $user): void
+    public function mount(Profile $profile): void
     {
-        $this->uuid = $user->profile->uuid;
-        $this->bio = $user->profile->bio;
+        $this->uuid = $profile->uuid;
+        $this->bio = $profile->bio;
     }
 
     protected function getFormSchema(): array

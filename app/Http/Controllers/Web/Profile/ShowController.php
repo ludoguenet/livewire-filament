@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Web\Profile;
 
-use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Domains\Profile\Queries\UserProfileQuery;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Infrastructure\Profile\Queries\UserProfileQueryContract;
 
 class ShowController extends Controller
 {
@@ -16,10 +17,12 @@ class ShowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Authenticatable $user): View
-    {
+    public function __invoke(
+        Authenticatable $user,
+        UserProfileQueryContract $query,
+    ): View {
         return view('profile.show', [
-            'user' => $user->load(['profile']),
+            'profile' => $query->handle($user),
         ]);
     }
 }

@@ -196,6 +196,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ObservableUserProvider::class,
 
+        /*
+         * Domain Service Providers...
+         */
+        Domains\Profile\Providers\ProfileServiceProvider::class,
+
     ],
 
     /*

@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace Domains\Profile\Queries;
 
-class UserProfileQuery
+use App\Models\Profile;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Infrastructure\Profile\Queries\UserProfileQueryContract;
+
+class UserProfileQuery implements UserProfileQueryContract
 {
-    public function handle()
+    public function handle(Authenticatable $user): Model
     {
-        return 0;
+        return Profile::query()
+            ->whereBelongsTo($user, 'owner')
+            ->first();
     }
 }

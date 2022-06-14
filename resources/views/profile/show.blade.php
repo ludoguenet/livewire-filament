@@ -7,7 +7,7 @@
 
     <div class="py-12 max-w-7xl mx-auto">
         <livewire:profile.profile-form
-            :user="$user"
+            :profile="$profile"
         />
     </div>
 
